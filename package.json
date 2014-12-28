@@ -1,0 +1,22 @@
+{
+  "name": "express-shop",
+  "version": "1.0.0",
+  "description": "Express/Passport/Mongo/OAuth2 with Angular/React/Flux",
+  "author": "Victor Bondaruk",
+  "license": "ISC",
+  "engines": {
+    "node": "0.10.x",
+    "npm": "1.4.x"
+  },
+  "scripts": {
+    "start": "gulp",
+    "test": "gulp test",
+    "postinstall": "bower install --config.interactive=false"
+  },
+  "dependencies": {
+    "express": "~4.10.6",
+    "gulp": "~3.8.10",
+    "mongoose": "~3.8.21",
+    "passport": "~0.2.1"
+  }
+}
