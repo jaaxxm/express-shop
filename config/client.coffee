@@ -10,8 +10,8 @@ ASSETS =
     'public/assets/styles/*.css'
   ]
   modules: [
-    'modules/app.js'
-    'modules/**/*.js'
+    'js/app.js'
+    'js/**/*.js'
   ]
   tests: []
 

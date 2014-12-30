@@ -17,10 +17,6 @@ modules_path = "node_modules"
 dist_path = "dist"
 backapp_path = "app"
 
-logFile = (es) ->
-  es.map (file, cb) ->
-    log file.path
-    cb()
 
 gulp.task 'clean', ->
   rimraf.sync(dist_path)
@@ -28,14 +24,13 @@ gulp.task 'clean', ->
 gulp.task 'copy', ['clean'], ->
   gulp.src("#{front_path}/**/*.html").pipe(gulp.dest(dist_path))
   gulp.src(ASSETS.lib.js).pipe(gulp.dest("#{dist_path}/lib"))
-  gulp.src("#{front_path}/modules/**/*.js").pipe(gulp.dest("#{dist_path}/js"))
+  gulp.src("#{front_path}/js/**/*.js").pipe(gulp.dest("#{dist_path}/js"))
 
 gulp.task 'spa', ['copy'], ->
 
   unixifyPath = (p) ->
     regex = /\\/g
     p.replace regex, '/'
-    p.replace 'modules/', 'js/'
 
   includify = ->
     scripts = []
