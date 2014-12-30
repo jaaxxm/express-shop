@@ -2,16 +2,22 @@
 <html ng-app="app">
 <head>
     <title>APP NAME</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <base href="/">
+    <link rel="stylesheet" type="text/css" href="assets/styles.css">
 </head>
 <body>
 <div ng-controller="MainCtrl as vm">
-    <h1>Get random</h1>
+    <h1>Get random magic</h1>
     <button ng-click="vm.getRandomUser()">Get random user</button>
     <pre ng-bind="vm.randomUser | json"></pre><hr />
 </div>
-<script src="../bower_components/angular/angular.min.js"></script>
-<script src="app.js"></script>
+
+<% _.forEach(libs, function (lib) { %><script src="<%= lib %>"></script>
+<% }); %>
+
+<% _.forEach(modules, function (module) { %><script src="<%= module %>"></script>
+<% }); %>
+
 <script type="text/javascript" src="http://localhost:35729/livereload.js"></script>
 </body>
 </html>

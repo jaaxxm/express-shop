@@ -6,7 +6,7 @@
 .sass-cache/
 npm-debug.log
 node_modules/
-bower_components/
+public/lib/
 dist/
 .bower_*/
 .idea/

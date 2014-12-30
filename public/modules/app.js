@@ -16,11 +16,15 @@
 
     app.factory('RandomUserFactory', function RandomUserFactory($http, API_URL){
         return {
-            getUser: getUser
+            getUser: getUser,
+            getContact: getContact
         }
 
         function getUser(){
             return $http.get(API_URL + '/random-user');
+        }
+        function getContact(){
+            return $http.get(API_URL + '/random-contact');
         }
     });
 
