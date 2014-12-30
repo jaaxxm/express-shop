@@ -14,9 +14,14 @@
     "postinstall": "bower install --config.interactive=false"
   },
   "dependencies": {
-    "express": "~4.10.6",
-    "gulp": "~3.8.10",
-    "mongoose": "~3.8.21",
-    "passport": "~0.2.1"
+    "coffee-script": "^1.8.0",
+    "cors": "^2.5.2",
+    "express": "^4.10.6",
+    "faker": "^1.1.0",
+    "gulp": "^3.8.10",
+    "gulp-livereload": "^3.0.2",
+    "gulp-nodemon": "^1.0.4",
+    "gulp-util": "^3.0.1",
+    "rimraf": "^2.2.8"
   }
 }

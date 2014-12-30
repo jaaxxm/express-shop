@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <title>APP NAME</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+<div ng-controller="MainCtrl as vm">
+    <h1>Get random</h1>
+    <button ng-click="vm.getRandomUser()">Get random user</button>
+    <pre ng-bind="vm.randomUser | json"></pre><hr />
+</div>
+<script src="../bower_components/angular/angular.min.js"></script>
+<script src="app.js"></script>
+<script type="text/javascript" src="http://localhost:35729/livereload.js"></script>
+</body>
+</html>
