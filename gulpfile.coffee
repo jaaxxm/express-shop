@@ -106,5 +106,5 @@ gulp.task 'default', ['spa', 'server', 'watch']
 
 gulp.task 'watch', ['copy'], ->
   livereload.listen()
-  gulp.watch ["#{front_path}/**/*.js"], ['copy']
-  gulp.watch ["#{front_path}/**/*.html"], ['copy']
+  gulp.watch ["#{front_path}/**/*.js"], ['spa']
+  gulp.watch ["#{front_path}/**/*.html"], ['spa']
