@@ -1,0 +1,34 @@
+<div layout="column" layout-fill>
+  <section layout="row" flex>
+    <!-- public side nav -->
+    <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$media('gt-md')">
+      <md-toolbar class="md-theme-indigo">
+        <h1 class="md-toolbar-tools">Public Nav</h1>
+      </md-toolbar>
+      <md-content class="md-padding">
+
+        <md-list>
+          <md-item>
+            <md-item-content>
+              <a ui-sref="app.public.home">Home</a>
+            </md-item-content>
+          </md-item>
+          <md-item>
+            <md-item-content>
+              <a ui-sref="app.public.contact">Contact</a>
+            </md-item-content>
+          </md-item>
+        </md-list>
+        <md-button class="md-primary" hide-gt-md>
+          Close Sidenav Left
+        </md-button>
+        <p hide-md show-gt-md>
+          This sidenav is locked open on your device. To go back to the default behavior,
+          narrow your display.
+        </p>
+      </md-content>
+    </md-sidenav>
+    <!-- public content -->
+    <md-content flex class="md-padding" ui-view="content"></md-content>
+  </section>
+</div>

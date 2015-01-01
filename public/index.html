@@ -1,27 +1,12 @@
 <!DOCTYPE html>
-<html ng-app="app">
+<html ng-controller="MainCtrl as main">
 <head>
-    <title>APP NAME</title>
+    <title ng-bind="main.title"></title>
     <base href="/">
-    <link rel="stylesheet" type="text/css" href="assets/styles.css">
+    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/angular_material/0.6.1/angular-material.min.css">
 </head>
 <body>
-<div ng-controller="MainCtrl as vm">
-    <h1>Get random magic</h1>
-    <div ng-hide="vm.user">
-      <form ng-submit="vm.login(vm.username, vm.password)">
-        <label for=""><input type="text" ng-model="vm.username"></label><br />
-        <label for=""><input type="text" ng-model="vm.password"></label><br />
-        <button type="submit">Login</button>
-      </form>
-    </div>
-    <div ng-show="vm.user">
-      <h2>Welcome <span ng-bind="vm.user.username"></span></h2>
-      <button ng-click="vm.logout()">Logout</button><br/>
-      <button ng-click="vm.getRandomUser()">Get random user</button>
-      <pre ng-bind="vm.randomUser | json"></pre><hr />
-    </div>
-</div>
+<div ui-view></div>
 
 <% _.forEach(libs, function (lib) { %><script src="<%= lib %>"></script>
 <% }); %>

@@ -1,30 +1,35 @@
 {ASSETS} = require './config/client.coffee'
-
-gulp = require 'gulp'
-template = require 'gulp-template'
-livereload = require 'gulp-livereload'
-nodemon = require 'gulp-nodemon'
-rimraf = require 'rimraf'
-
-log = require('gulp-util').log
-path = require 'path'
-es = require 'event-stream'
-q = require 'q'
-
 front_path = "public"
 components_path = "bower_components"
 modules_path = "node_modules"
 dist_path = "dist"
 backapp_path = "app"
 
+gulp = require 'gulp'
+template = require 'gulp-template'
+jshint = require 'gulp-jshint'
+livereload = require 'gulp-livereload'
+nodemon = require 'gulp-nodemon'
+
+log = require('gulp-util').log
+path = require 'path'
+rimraf = require 'rimraf'
+es = require 'event-stream'
+q = require 'q'
 
 gulp.task 'clean', ->
   rimraf.sync(dist_path)
 
-gulp.task 'copy', ['clean'], ->
-  gulp.src("#{front_path}/**/*.html").pipe(gulp.dest(dist_path))
+gulp.task 'jshint', ->
+  gulp
+    .src("#{front_path}/js/**/*.js")
+    .pipe(jshint())
+    .pipe(jshint.reporter('default'))
+
+gulp.task 'copy', ['clean', 'jshint'], ->
   gulp.src(ASSETS.lib.js).pipe(gulp.dest("#{dist_path}/lib"))
   gulp.src("#{front_path}/js/**/*.js").pipe(gulp.dest("#{dist_path}/js"))
+  gulp.src("#{front_path}/**/*.html").pipe(gulp.dest(dist_path))
 
 gulp.task 'spa', ['copy'], ->
 
