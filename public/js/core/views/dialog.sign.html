@@ -94,10 +94,12 @@
                 ng-model="dialog.registerData.repassword" 
                 ng-change="" 
                 ng-blur="" 
+                jm-input-match="dialog.registerData.password"
                 autocapitalize="off" 
                 required></md-input>
               <div ng-messages="formRegister.repassword.$error" ng-show="formRegister.$submitted">
                 <div ng-message="required">This field is required</div>
+                <div ng-message="unique">Passwords didn't match</div>
                 <div ng-message="minlength">Input too short</div>
               </div>
             </md-input-group>

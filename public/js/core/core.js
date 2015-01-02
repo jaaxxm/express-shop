@@ -1,6 +1,6 @@
 (function() {
   'use strict';
 
-  AppConfiguration.registerModule('core', []);
+  AppConfiguration.registerModule('core', ['common']);
 
 })();
