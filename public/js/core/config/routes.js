@@ -5,11 +5,11 @@
     function ($stateProvider) {
 
       $stateProvider
-        .state('app.public', {
+        .state('core', {
           abstract: true,
-          templateUrl: '/js/core/views/layout.public.html'
+          templateUrl: '/js/core/views/layout.core.html'
         })
-        .state('app.public.home', {
+        .state('core.home', {
           url: '/',
           views: {
             "content": {
@@ -18,7 +18,7 @@
             }
           }
         })
-        .state('app.public.contact', {
+        .state('core.contact', {
           url: '/contact',
           views: {
             "content": {

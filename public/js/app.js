@@ -7,13 +7,6 @@
           // $locationProvider.hashPrefix('!');
           $locationProvider.html5Mode(true);
 
-          $stateProvider
-          .state('app', {
-            url: '',
-            template: '<ui-view/>',
-            abstract: true
-          });
-
           $urlRouterProvider.otherwise('/');
 
         }

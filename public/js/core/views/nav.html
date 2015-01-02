@@ -1,0 +1,35 @@
+<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="nav-public" md-is-locked-open="$media('gt-md')">
+  <md-toolbar class="md-theme-indigo">
+    <h1 class="md-toolbar-tools">
+      Public Nav
+      <span ng-bind="nav.email"></span>
+    </h1>
+  </md-toolbar>
+  <md-content class="md-padding">
+    <md-list>
+      <md-item>
+        <md-item-content>
+          <a ui-sref="core.home">Home</a>
+        </md-item-content>
+      </md-item>
+      <md-item>
+        <md-item-content>
+          <a ui-sref="core.contact">Contact</a>
+        </md-item-content>
+      </md-item>
+    </md-list>
+    <md-button class="md-primary" ng-click="nav.showUserDialog($event, 'login')">
+      Login
+    </md-button>
+    <md-button class="md-primary" ng-click="nav.showUserDialog($event, 'register')">
+      Register
+    </md-button>
+    <md-button class="md-primary" hide-gt-md>
+      Close Sidenav Left
+    </md-button>
+    <p hide-md show-gt-md>
+      This sidenav is locked open on your device. To go back to the default behavior,
+      narrow your display.
+    </p>
+  </md-content>
+</md-sidenav>

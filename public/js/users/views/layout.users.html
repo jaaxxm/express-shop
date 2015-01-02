@@ -3,29 +3,25 @@
     <!-- public side nav -->
     <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$media('gt-md')">
       <md-toolbar class="md-theme-indigo">
-        <h1 class="md-toolbar-tools">Public Nav</h1>
+        <h1 class="md-toolbar-tools">Users Nav</h1>
       </md-toolbar>
       <md-content class="md-padding">
 
         <md-list>
           <md-item>
             <md-item-content>
-              <a ui-sref="app.public.home">Home</a>
+              <a ui-sref="users.info">Info</a>
             </md-item-content>
           </md-item>
           <md-item>
             <md-item-content>
-              <a ui-sref="app.public.contact">Contact</a>
+              <a ui-sref="users.security">Security</a>
             </md-item-content>
           </md-item>
         </md-list>
         <md-button class="md-primary" hide-gt-md>
           Close Sidenav Left
         </md-button>
-        <p hide-md show-gt-md>
-          This sidenav is locked open on your device. To go back to the default behavior,
-          narrow your display.
-        </p>
       </md-content>
     </md-sidenav>
     <!-- public content -->

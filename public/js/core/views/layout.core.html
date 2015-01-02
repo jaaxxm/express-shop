@@ -1,0 +1,8 @@
+<div layout="column" layout-fill>
+  <section layout="row" flex>
+    <!-- public side nav -->
+    <div ng-include="'/js/core/views/nav.html'" ng-controller="NavPublicCtrl as nav"></div>
+    <!-- public content -->
+    <md-content flex class="md-padding" ui-view="content"></md-content>
+  </section>
+</div>
