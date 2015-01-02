@@ -1,0 +1,116 @@
+<md-dialog aria-label="{{dialog.activeTabIndex}}">
+  <md-content style="width:300px; padding:0;">
+  
+    <md-tabs md-selected="dialog.activeTabIndex">
+      
+      <md-tab label="Login">
+        <div layout="row" layout-align="center center">
+          
+          <form ng-submit="dialog.login(dialog.loginCredentials)" name="formLogin" class="md-padding" novalidate>
+            
+            <md-input-group class="md-default-theme">
+              <label for="">Email</label>
+              <md-input 
+                type="email"
+                name="email"
+                ng-model="dialog.loginCredentials.email" 
+                ng-change="" 
+                ng-blur="" 
+                autocapitalize="off" 
+                required></md-input>
+              <div ng-messages="formLogin.email.$error" ng-show="formLogin.$submitted">
+                <div ng-message="required">This field is required</div>
+                <div ng-message="email">Use correct address</div>
+              </div>
+            </md-input-group>
+
+            <md-input-group class="md-default-theme">
+              <label for="">Password</label>
+              <md-input 
+                type="password"
+                name="password"
+                ng-model="dialog.loginCredentials.password" 
+                ng-change="" 
+                ng-blur="" 
+                minlength="3"
+                autocapitalize="off" 
+                required></md-input>
+              <div ng-messages="formLogin.password.$error" ng-show="formLogin.$submitted">
+                <div ng-message="required">This field is required</div>
+                <div ng-message="minlength">Input too short</div>
+              </div>
+            </md-input-group>
+            
+            <p class="row"><md-button class="md-primary">Login</md-button></p>
+          </form>
+          
+        </div>
+      </md-tab>
+
+      <md-tab label="Register">
+        <div layout="row" layout-align="center center">
+          
+          <form ng-submit="dialog.register(dialog.registerData)" name="formRegister" class="md-padding" novalidate>
+
+            <md-input-group class="md-default-theme">
+              <label for="">Email</label>
+              <md-input 
+                type="email"
+                name="email"
+                ng-model="dialog.registerData.email" 
+                ng-change="" 
+                ng-blur="" 
+                autocapitalize="off" 
+                required></md-input>
+              <div ng-messages="formRegister.email.$error" ng-show="formRegister.$submitted">
+                <div ng-message="required">This field is required</div>
+                <div ng-message="email">Use correct address</div>
+              </div>
+            </md-input-group>
+
+            <md-input-group class="md-default-theme">
+              <label for="">Password</label>
+              <md-input 
+                type="password"
+                name="password"
+                minlength="3"
+                ng-model="dialog.registerData.password" 
+                ng-change="" 
+                ng-blur="" 
+                autocapitalize="off" 
+                required></md-input>
+              <div ng-messages="formRegister.password.$error" ng-show="formRegister.$submitted">
+                <div ng-message="required">This field is required</div>
+                <div ng-message="minlength">Input too short</div>
+              </div>
+            </md-input-group>
+
+            <md-input-group class="md-default-theme">
+              <label for="">Retype Password</label>
+              <md-input 
+                type="password"
+                name="repassword"
+                minlength="3"
+                ng-model="dialog.registerData.repassword" 
+                ng-change="" 
+                ng-blur="" 
+                autocapitalize="off" 
+                required></md-input>
+              <div ng-messages="formRegister.repassword.$error" ng-show="formRegister.$submitted">
+                <div ng-message="required">This field is required</div>
+                <div ng-message="minlength">Input too short</div>
+              </div>
+            </md-input-group>
+            
+            <p class="row"><md-button class="md-primary">Register</md-button></p>
+          </form>
+          
+        </div>
+      </md-tab>
+
+    </md-tabs>
+
+  </md-content>
+</md-dialog>
+
+

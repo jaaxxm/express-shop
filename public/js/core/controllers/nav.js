@@ -7,15 +7,14 @@
       var nav = this;
       nav.showUserDialog = showUserDialog;
 
-      function showUserDialog(ev, tab){
-
+      function showUserDialog(ev, tabIndex){
         $mdDialog.show({
           controller: 'SigninDialogCtrl',
           controllerAs: 'dialog',
-          templateUrl: '/js/core/views/dialog.signin.html',
+          templateUrl: '/js/core/views/dialog.sign.html',
           targetEvent: ev,
           locals: {
-            tab: tab
+            activeTabIndex: tabIndex
           },
           bindToController: true
         })

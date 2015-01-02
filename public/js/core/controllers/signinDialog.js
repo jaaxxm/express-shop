@@ -5,6 +5,15 @@
     function ($mdDialog) {
 
       var dialog = this;
+      dialog.login = login;
+      dialog.register = register;
+
+      function login(credentials){
+        console.log(credentials);
+      }
+      function register(data){
+        console.log(data);
+      }
 
     }
   ]);
