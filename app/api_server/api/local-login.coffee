@@ -17,7 +17,7 @@ setRouter = (router) ->
       return next(err)  if err
       unless user
         console.log info
-        return res.json(401, info)
+        return res.status(401).json(info)
       req.login user, (err) ->
         return next(err)  if err
         res.json 200
@@ -37,7 +37,7 @@ setRouter = (router) ->
       console.log "this user is not authenticated"
     
     # TODO what do we remove for this request??
-    res.send 200
+    res.sendStatus 200
     return
 
   
@@ -50,8 +50,8 @@ setRouter = (router) ->
       return next(err)  if err
       unless user
         console.log info
-        return res.json(401, info)
-      res.send 200
+        return res.status(401).json(info)
+      res.sendStatus 200
     ) req, res, next
     return
 
@@ -73,11 +73,11 @@ setPassportStrategy = ->
       return done(err)  if err
       unless user
         return done(null, false,
-          reason: "invalid-email"
+          reason: "Invalid email"
         )
       unless user.validPassword(password)
         return done(null, false,
-          reason: "invalid-password"
+          reason: "Invalid password"
         )
       done null, user
 

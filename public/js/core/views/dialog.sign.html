@@ -6,19 +6,20 @@
       <md-tab label="Login">
         <div layout="row" layout-align="center center">
           
-          <form ng-submit="dialog.login(dialog.loginCredentials)" name="formLogin" class="md-padding" novalidate>
+          <form ng-submit="dialog.login(loginCredentials, formLogin.$valid)" name="formLogin" class="md-padding" novalidate>
             
             <md-input-group class="md-default-theme">
               <label for="">Email</label>
               <md-input 
                 type="email"
-                name="email"
-                ng-model="dialog.loginCredentials.email" 
+                name="username"
+                ng-model="loginCredentials.username" 
                 ng-change="" 
                 ng-blur="" 
+                ng-focus="dialog.serverError = null" 
                 autocapitalize="off" 
                 required></md-input>
-              <div ng-messages="formLogin.email.$error" ng-show="formLogin.$submitted">
+              <div ng-messages="formLogin.username.$error" ng-show="formLogin.$submitted">
                 <div ng-message="required">This field is required</div>
                 <div ng-message="email">Use correct address</div>
               </div>
@@ -29,9 +30,10 @@
               <md-input 
                 type="password"
                 name="password"
-                ng-model="dialog.loginCredentials.password" 
+                ng-model="loginCredentials.password" 
                 ng-change="" 
                 ng-blur="" 
+                ng-focus="dialog.serverError = null" 
                 minlength="3"
                 autocapitalize="off" 
                 required></md-input>
@@ -40,7 +42,11 @@
                 <div ng-message="minlength">Input too short</div>
               </div>
             </md-input-group>
-            
+            <!-- Server errors -->
+            <p class="row" ng-show="dialog.serverError">
+              <span ng-bind="dialog.serverError.text"></span> - 
+              <span ng-bind="dialog.serverError.reason"></span>
+            </p>
             <p class="row"><md-button class="md-primary">Login</md-button></p>
           </form>
           
@@ -50,19 +56,19 @@
       <md-tab label="Register">
         <div layout="row" layout-align="center center">
           
-          <form ng-submit="dialog.register(dialog.registerData)" name="formRegister" class="md-padding" novalidate>
+          <form ng-submit="dialog.register(registerData, formRegister.$valid)" name="formRegister" class="md-padding" novalidate>
 
             <md-input-group class="md-default-theme">
               <label for="">Email</label>
               <md-input 
                 type="email"
-                name="email"
-                ng-model="dialog.registerData.email" 
+                name="username"
+                ng-model="registerData.username" 
                 ng-change="" 
                 ng-blur="" 
                 autocapitalize="off" 
                 required></md-input>
-              <div ng-messages="formRegister.email.$error" ng-show="formRegister.$submitted">
+              <div ng-messages="formRegister.username.$error" ng-show="formRegister.$submitted">
                 <div ng-message="required">This field is required</div>
                 <div ng-message="email">Use correct address</div>
               </div>
@@ -74,7 +80,7 @@
                 type="password"
                 name="password"
                 minlength="3"
-                ng-model="dialog.registerData.password" 
+                ng-model="registerData.password" 
                 ng-change="" 
                 ng-blur="" 
                 autocapitalize="off" 
@@ -91,10 +97,10 @@
                 type="password"
                 name="repassword"
                 minlength="3"
-                ng-model="dialog.registerData.repassword" 
+                ng-model="registerData.repassword" 
                 ng-change="" 
                 ng-blur="" 
-                jm-input-match="dialog.registerData.password"
+                jm-input-match="registerData.password"
                 autocapitalize="off" 
                 required></md-input>
               <div ng-messages="formRegister.repassword.$error" ng-show="formRegister.$submitted">

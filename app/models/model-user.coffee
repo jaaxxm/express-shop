@@ -5,6 +5,17 @@ schema = mongoose.Schema(
     email: String
     password: String
 
+  roles:
+    type: [
+      type: String
+      enum: [
+        'user'
+        'admin'
+      ]
+    ]
+    index: true
+    default: ['user']
+
   twitter:
     id: String
     token: String

@@ -5,12 +5,12 @@
     function ($stateProvider) {
 
       $stateProvider
-        .state('users', {
+        .state('user', {
           url: '/profile',
           abstract: true,
           templateUrl: '/js/users/views/layout.users.html'
         })
-        .state('users.info', {
+        .state('user.info', {
           url: '/info',
           views: {
             "content": {
@@ -18,7 +18,7 @@
             }
           }
         })
-        .state('users.security', {
+        .state('user.security', {
           url: '/security',
           views: {
             "content": {

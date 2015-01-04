@@ -15,7 +15,8 @@ module.exports.oauth2 = type:
   password:
     name: "password"
     token_refreshable: true
-    token_duration: 3600 * 24 * 365
+    # token_duration: 3600 * 24 * 365
+    token_duration: 120
 
   clientCredentials:
     name: "client_credentials"

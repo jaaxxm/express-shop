@@ -17,11 +17,6 @@
             activeTabIndex: tabIndex
           },
           bindToController: true
-        })
-        .then(function(answer) {
-          console.log('You said the information was "' + answer + '".');
-        }, function() {
-          console.log('You cancelled the dialog.');
         });
       }
 

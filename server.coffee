@@ -33,7 +33,7 @@ redirectHttps = ->
 # initialize database model handler and path route handler
 # register middlewares
 app.use logger('dev')
-app.all '*', redirectHttps()
+# app.all '*', redirectHttps()
 app.use bodyParser.json()
 app.use bodyParser.urlencoded({extended: true})
 app.use express.static(dist)
@@ -54,29 +54,42 @@ apiRouter.initialize app
 oauth2Router.initialize app
 
 
-# start backend with functionalities of both of API server and OAuth2 Server)
-https = require('https')
-fs = require('fs')
-debug = require('debug')('backend')
-
-# This is just selfsigned certificate. 
-# for product, you can replace this to own certificates  
-privateKey = './config/ssl/key.pem'
-publicCert = './config/ssl/public.cert'
-publicCertPassword = '12345'
-httpsConfig =
-  key: fs.readFileSync(privateKey)
-  cert: fs.readFileSync(publicCert)
-  passphrase: publicCertPassword
-
-# http protocol 
-server = app.listen(3000, ->
-  debug 'Express server listening on port ' + server.address().port
+# We use html5 mode, so we need redirect all pages to index
+app.get '/*', (req, res) ->
+  res.sendFile(__dirname + '/dist/index.html')
   return
-)
 
-# https protocol
-sslServer = https.createServer(httpsConfig, app)
-sslServer.listen 3443, ->
-  debug 'Express SSL server listening on port ' + sslServer.address().port
-  return
+app.listen 3000, ->
+  console.log 'App listening on port 3000'
+
+#
+#
+# Temporary disable HTTPS for dev
+#
+#
+# # start backend with functionalities of both of API server and OAuth2 Server)
+# https = require('https')
+# fs = require('fs')
+# debug = require('debug')('backend')
+
+# # This is just selfsigned certificate. 
+# # for product, you can replace this to own certificates  
+# privateKey = './config/ssl/key.pem'
+# publicCert = './config/ssl/public.cert'
+# publicCertPassword = '12345'
+# httpsConfig =
+#   key: fs.readFileSync(privateKey)
+#   cert: fs.readFileSync(publicCert)
+#   passphrase: publicCertPassword
+
+# # http protocol 
+# server = app.listen(3000, ->
+#   debug 'Express server listening on port ' + server.address().port
+#   return
+# )
+
+# # https protocol
+# sslServer = https.createServer(httpsConfig, app)
+# sslServer.listen 3443, ->
+#   debug 'Express SSL server listening on port ' + sslServer.address().port
+#   return

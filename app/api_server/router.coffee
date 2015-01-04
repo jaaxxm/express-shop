@@ -3,25 +3,22 @@ passport = require('passport')
 
 # var socialStrategy = require('./social-strategy');
 User = require("#{__appbase_dirname}/app/models/model-user")
+
 initialize = (app) ->
   setPassport()
   setApiRoutes app
   return
 
-setPassport = ->
-  
+setPassport = ->  
   # initialize passport 
   passport.serializeUser (user, done) ->
-    
     #console.log('Serialization: ' + user);
     done null, user.id
     return
 
   passport.deserializeUser (id, done) ->
-    
     #console.log('Deserialization: ' + id);
     User.findById id, (err, user) ->
-      
       #console.log(user);
       done err, user
       return
