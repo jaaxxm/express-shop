@@ -9,6 +9,7 @@ ASSETS =
       'public/lib/angular-aria/angular-aria.js'
       'public/lib/ui-router/release/angular-ui-router.js'
       'public/lib/angular-material/angular-material.js'
+      'public/lib/angular-local-storage/dist/angular-local-storage.js'
     ]
   css: [
     'public/assets/styles/*.css'

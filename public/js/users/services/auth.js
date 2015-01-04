@@ -1,8 +1,35 @@
 (function() {
   'use strict';
 
-  angular.module('users').factory('AuthFactory', ['$q', '$http', 'TokenFactory',
-    function ($q, $http, TokenFactory) {
+  angular.module('users').factory('AuthFactory', ['$q', '$http', 'localStorageService',
+    function ($q, $http, localStorageService) {
+
+      var user_key = 'user';
+      var loaded = false;
+
+      function setUp(response) {
+        $user = response.data;
+        localStorageService.add(user_key, $user);
+        setAuthorization($user.access_token);
+        // $rootScope.$broadcast('JM.events.onLogin', $user);
+      }
+
+      function tearDown() {
+        $user = undefined;
+        localStorageService.remove(user_key);
+        clearAuthorization();
+        // $rootScope.$broadcast('JM.events.onLogout');
+      }
+
+      var setAuthorization = function(token)
+      {
+        $http.defaults.headers.common.Authorization = 'Bearer ' + token;
+      };
+
+      var clearAuthorization = function()
+      {
+        $http.defaults.headers.common.Authorization = null;
+      };
 
       var login = function(credentials) {
         console.log(credentials);
@@ -23,11 +50,11 @@
           $http(req).then(
             function(response) {
               // setup User
-              TokenFactory.setToken(response.data);
-              resolve(response);
+              setUp(response);
+              resolve($user);
             },
             function(response) {
-              // tear down User
+              tearDown();
               reject({
                 text: response.statusText, 
                 reason: response.data.reason
@@ -55,6 +82,10 @@
           );
         });
       };
+
+      var $user = localStorageService.get(user_key);
+      if($user) { setAuthorization($user.token); }
+      else { $user = null; }
 
       return {
         login: login,

@@ -2,12 +2,14 @@
   'use strict';
     //Start by defining the main module and adding the module dependencies
     angular.module(AppConfiguration.moduleName, AppConfiguration.vendorDependencies)
-      .config(['$locationProvider', '$stateProvider', '$urlRouterProvider',
-        function ($locationProvider, $stateProvider, $urlRouterProvider) {
+      .config(['$locationProvider', '$urlRouterProvider', 'localStorageServiceProvider',
+        function ($locationProvider, $urlRouterProvider, localStorageServiceProvider) {
           // $locationProvider.hashPrefix('!');
           $locationProvider.html5Mode(true);
 
           $urlRouterProvider.otherwise('/');
+
+          localStorageServiceProvider.setPrefix('expressShop');
 
         }
       ])
