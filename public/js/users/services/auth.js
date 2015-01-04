@@ -21,16 +21,6 @@
         // $rootScope.$broadcast('JM.events.onLogout');
       }
 
-      var setAuthorization = function(token)
-      {
-        $http.defaults.headers.common.Authorization = 'Bearer ' + token;
-      };
-
-      var clearAuthorization = function()
-      {
-        $http.defaults.headers.common.Authorization = null;
-      };
-
       var login = function(credentials) {
         console.log(credentials);
         angular.extend(credentials, {grant_type : 'password'});
@@ -49,12 +39,33 @@
         return $q(function(resolve, reject) {
           $http(req).then(
             function(response) {
-              // setup User
               setUp(response);
               resolve($user);
             },
             function(response) {
               tearDown();
+              reject({
+                text: response.statusText, 
+                reason: response.data.reason
+              });
+            }
+          );
+        });
+      };
+
+      var logout = function() {
+        var req = {
+          method: 'DELETE',
+          url: '/oauth2/token'
+        };
+
+        return $q(function(resolve, reject) {
+          $http(req).then(
+            function(response) {
+              tearDown();
+              resolve(response);
+            },
+            function(response) {
               reject({
                 text: response.statusText, 
                 reason: response.data.reason
@@ -82,6 +93,16 @@
           );
         });
       };
+  
+      var setAuthorization = function(token)
+      {
+        $http.defaults.headers.common.Authorization = 'Bearer ' + token;
+      };
+
+      var clearAuthorization = function()
+      {
+        $http.defaults.headers.common.Authorization = null;
+      };
 
       var $user = localStorageService.get(user_key);
       if($user) { setAuthorization($user.token); }
@@ -89,6 +110,7 @@
 
       return {
         login: login,
+        logout: logout,
         register: register
       };
 
