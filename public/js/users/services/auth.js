@@ -105,7 +105,7 @@
       };
 
       var $user = localStorageService.get(user_key);
-      if($user) { setAuthorization($user.token); }
+      if($user) { setAuthorization($user.access_token); }
       else { $user = null; }
 
       return {
