@@ -1,9 +1,9 @@
 {ASSETS} = require './config/client.coffee'
-front_path = "public"
-components_path = "bower_components"
-modules_path = "node_modules"
-dist_path = "dist"
-backapp_path = "app"
+front_path = 'public'
+components_path = 'bower_components'
+modules_path = 'node_modules'
+dist_path = 'dist'
+backapp_path = 'server'
 
 gulp = require 'gulp'
 template = require 'gulp-template'
@@ -99,13 +99,13 @@ gulp.task 'spa', ['copy'], ->
 
 gulp.task 'build', ['clean', 'copy', 'css', 'js']
 
-server_main = "server.coffee"
 gulp.task 'server', ->
-  nodemon
-    script: server_main
-    watch: [server_main, backapp_path]
+  nodemon(
+    script: "#{backapp_path}/app.js"
+    watch: [backapp_path]
     env:
       PORT: process.env.PORT or 3000
+  )
 
 gulp.task 'default', ['spa', 'server', 'watch']
 

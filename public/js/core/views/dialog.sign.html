@@ -12,14 +12,14 @@
               <label for="">Email</label>
               <md-input 
                 type="email"
-                name="username"
-                ng-model="loginCredentials.username" 
+                name="email"
+                ng-model="loginCredentials.email" 
                 ng-change="" 
                 ng-blur="" 
                 ng-focus="dialog.serverError = null" 
                 autocapitalize="off" 
                 required></md-input>
-              <div ng-messages="formLogin.username.$error" ng-show="formLogin.$submitted">
+              <div ng-messages="formLogin.email.$error" ng-show="formLogin.$submitted">
                 <div ng-message="required">This field is required</div>
                 <div ng-message="email">Use correct address</div>
               </div>

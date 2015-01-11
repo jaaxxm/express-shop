@@ -10,7 +10,7 @@
       function setUp(response) {
         $user = response.data;
         localStorageService.add(user_key, $user);
-        setAuthorization($user.access_token);
+        setAuthorization($user.token);
         // $rootScope.$broadcast('JM.events.onLogin', $user);
       }
 
@@ -23,22 +23,17 @@
 
       var login = function(credentials) {
         console.log(credentials);
-        angular.extend(credentials, {grant_type : 'password'});
         
         var req = {
           method: 'POST',
-          url: '/oauth2/token',
-          headers: {
-            // This is used for authenticate this client by 
-            // authorization server
-            'Authorization' : 'Basic dEVZUUFGaUFBbUxyUzJEbDpZbUUyTFlUR0t1bmxWVzVPcktObFdGOUtRWlVaT0hEeQ=='
-          },
+          url: '/auth/local',
           data: credentials
         };
 
         return $q(function(resolve, reject) {
           $http(req).then(
             function(response) {
+              console.log(response);
               setUp(response);
               resolve($user);
             },
@@ -56,7 +51,7 @@
       var logout = function() {
         var req = {
           method: 'DELETE',
-          url: '/oauth2/token'
+          url: '/auth/local'
         };
 
         return $q(function(resolve, reject) {
@@ -105,7 +100,7 @@
       };
 
       var $user = localStorageService.get(user_key);
-      if($user) { setAuthorization($user.access_token); }
+      if($user) { setAuthorization($user.token); }
       else { $user = null; }
 
       return {
