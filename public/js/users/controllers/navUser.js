@@ -1,26 +1,26 @@
 (function() {
   'use strict';
 
-  angular.module('users').controller('NavUserCtrl', ['$state', 'AuthFactory',
-    function ($state, AuthFactory) {
+  function NavUserCtrl ($state, AuthFactory) {
 
-      var nav = this;
-      nav.logout = logout;
+    var nav = this;
+    nav.logout = logout;
 
-      function logout(){
-        var promise = AuthFactory.logout();
-        promise.then(
-          function (response) {
-            console.log(response);
-            $state.go('core.home');
-          },
-          function (error) {
-            
-          }
-        );
-      }
-
+    function logout(){
+      var promise = AuthFactory.logout();
+      promise.then(
+        function (response) {
+          console.log(response);
+          $state.go('core.home');
+        },
+        function (error) {
+          
+        }
+      );
     }
-  ]);
+
+  }
+
+  angular.module('users').controller('NavUserCtrl', NavUserCtrl);
 
 })();

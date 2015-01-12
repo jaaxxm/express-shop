@@ -1,13 +1,13 @@
 (function() {
   'use strict';
 
-  angular.module('core').controller('MainCtrl', ['$state',
-    function ($state) {
+  function MainCtrl ($state) {
 
-      var main = this;
-      main.title = 'Express Shop';
+    var main = this;
+    main.title = 'Express Shop';
 
-    }
-  ]);
+  }
+
+  angular.module('core').controller('MainCtrl', MainCtrl);
 
 })();

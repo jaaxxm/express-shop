@@ -1,13 +1,13 @@
 (function() {
   'use strict';
 
-  angular.module('core').controller('ContactCtrl', ['$state',
-    function ($state) {
+  function ContactCtrl ($state) {
 
-      var contact = this;
-      contact.email = 'jaaxxm@gmail.com';
+    var contact = this;
+    contact.email = 'jaaxxm@gmail.com';
 
-    }
-  ]);
+  }
+
+  angular.module('core').controller('ContactCtrl', ContactCtrl);
 
 })();

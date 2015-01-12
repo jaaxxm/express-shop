@@ -1,13 +1,13 @@
 (function() {
   'use strict';
 
-  angular.module('core').controller('HomeCtrl', ['$state',
-    function ($state) {
+  function HomeCtrl ($state) {
 
-      var home = this;
-      home.title = 'homectrl bind';
+    var home = this;
+    home.title = 'homectrl bind';
 
-    }
-  ]);
+  }
+
+  angular.module('core').controller('HomeCtrl', HomeCtrl);
 
 })();
