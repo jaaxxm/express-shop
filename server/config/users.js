@@ -65,7 +65,7 @@ exports.deleteAccount = {
 exports.emailTemplate = 'lockit-template-blank';
 
 // from email address
-exports.emailFrom = 'info@ridnaua.org';
+exports.emailFrom = 'info@ridnaukraine.org';
 
 // email signup template
 exports.emailSignup = {

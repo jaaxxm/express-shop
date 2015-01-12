@@ -70,7 +70,7 @@
         });
       };
 
-      var register = function(user) {
+      var signup = function(user) {
         console.log(user);
         return $q(function(resolve, reject) {
           $http.post('/auth/signup', user).then(
@@ -106,7 +106,7 @@
       return {
         login: login,
         logout: logout,
-        register: register
+        signup: signup
       };
 
     }

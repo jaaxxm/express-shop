@@ -6,7 +6,7 @@
 
       var dialog = this;
       dialog.login = login;
-      dialog.register = register;
+      dialog.signup = signup;
 
       function login(credentials, valid){
         if (valid) {
@@ -24,9 +24,9 @@
         }
       }
 
-      function register(data, valid){
+      function signup(data, valid){
         if (valid) {
-          var promise = AuthFactory.register(data);
+          var promise = AuthFactory.signup(data);
           promise.then(
             function (response) {
               console.log(response);
