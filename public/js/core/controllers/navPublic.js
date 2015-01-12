@@ -9,13 +9,11 @@
 
       function showUserDialog(ev, tabIndex){
         $mdDialog.show({
-          controller: 'SigninDialogCtrl',
+          controller: 'AutheticateDialogCtrl',
           controllerAs: 'dialog',
-          templateUrl: '/js/core/views/dialog.sign.html',
+          templateUrl: '/js/core/views/dialog.authenticate.html',
           targetEvent: ev,
-          locals: {
-            activeTabIndex: tabIndex
-          },
+          locals: { activeTabIndex: tabIndex },
           bindToController: true
         });
       }

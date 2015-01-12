@@ -26,6 +26,15 @@
               controller: 'ContactCtrl as contact'
             }
           }
+        })
+        .state('core.signtoken', {
+          url: '/signup/:token',
+          views: {
+            "content": {
+              templateUrl: '/js/core/views/signup.token.html',
+              controller: 'SignupTokenCtrl as vm'
+            }
+          }
         });
 
     }

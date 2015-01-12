@@ -26,7 +26,7 @@
         
         var req = {
           method: 'POST',
-          url: '/auth/local',
+          url: '/rest/login',
           data: credentials
         };
 
@@ -48,10 +48,36 @@
         });
       };
 
+      var reset = function(user) {
+        console.log(user);
+        
+        var req = {
+          method: 'POST',
+          url: '/rest/forgot-password',
+          data: user
+        };
+
+        return $q(function(resolve, reject) {
+          $http(req).then(
+            function(response) {
+              console.log(response);
+              resolve();
+            },
+            function(response) {
+              console.log(response);
+              reject({
+                text: response.statusText, 
+                reason: response.data.reason
+              });
+            }
+          );
+        });
+      };
+
       var logout = function() {
         var req = {
-          method: 'DELETE',
-          url: '/auth/local'
+          method: 'GET',
+          url: '/rest/logout'
         };
 
         return $q(function(resolve, reject) {
@@ -73,7 +99,26 @@
       var signup = function(user) {
         console.log(user);
         return $q(function(resolve, reject) {
-          $http.post('/auth/signup', user).then(
+          $http.post('/rest/signup', user).then(
+            function(response) {
+              // setup User
+              resolve(response);
+            },
+            function(response) {
+              // tear down User
+              reject({
+                text: response.statusText, 
+                reason: response.data.reason
+              });
+            }
+          );
+        });
+      };
+
+      var resend = function(data) {
+        console.log(data);
+        return $q(function(resolve, reject) {
+          $http.post('/rest/signup/resend-verification', data).then(
             function(response) {
               // setup User
               resolve(response);
@@ -105,8 +150,10 @@
 
       return {
         login: login,
+        reset: reset,
         logout: logout,
-        signup: signup
+        signup: signup,
+        resend: resend
       };
 
     }

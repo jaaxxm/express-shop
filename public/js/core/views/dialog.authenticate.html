@@ -1,0 +1,212 @@
+<md-dialog aria-label="{{dialog.activeTabIndex}}">
+  <md-content style="width:300px; padding: 0;">
+  
+    <md-tabs md-selected="dialog.activeTabIndex">
+      
+      <md-tab label="Signin">
+
+        <div layout="row" layout-align="center center" ng-switch on="dialog.signinStep">
+          <form name="formLogin" 
+            class="md-padding" 
+            ng-switch-default
+            ng-submit="dialog.login(loginCredentials, formLogin.$valid)" 
+            novalidate>
+            
+            <md-input-container class="md-default-theme">
+              <label for="">Username/Email</label>
+              <input 
+                type="login"
+                name="login"
+                ng-model="loginCredentials.login" 
+                ng-change="" 
+                ng-blur="" 
+                ng-focus="dialog.serverError = null" 
+                autocapitalize="off" 
+                required />
+            </md-input-container>
+            <div ng-messages="formLogin.login.$error" ng-show="formLogin.$submitted">
+              <div ng-message="required">This field is required</div>
+            </div>
+
+            <md-input-container class="md-default-theme">
+              <label for="">Password</label>
+              <input 
+                type="password"
+                name="password"
+                ng-model="loginCredentials.password" 
+                ng-change="" 
+                ng-blur="" 
+                ng-focus="dialog.serverError = null" 
+                minlength="3"
+                autocapitalize="off" 
+                required />
+            </md-input-container>
+            <div ng-messages="formLogin.password.$error" ng-show="formLogin.$submitted">
+              <div ng-message="required">This field is required</div>
+              <div ng-message="minlength">Input too short</div>
+            </div>
+            <!-- Server errors -->
+            <p class="row" ng-show="dialog.serverError">
+              <span ng-bind="dialog.serverError.text"></span> - 
+              <span ng-bind="dialog.serverError.reason"></span>
+            </p>
+            <p class="row">
+              <md-button class="md-primary">Login</md-button>
+              <md-button class="md-primary" ng-click="dialog.signinStep='forgot'">Forgot Password?</md-button>
+            </p>
+          </form>
+
+          <form name="formForgotPassword" 
+            class="md-padding" 
+            ng-switch-when="forgot"
+            ng-submit="dialog.reset(resetCredentials, formForgotPassword.$valid)" 
+            novalidate>  
+            <md-input-container class="md-default-theme">
+              <label for="">Email</label>
+              <input 
+                type="email"
+                name="email"
+                ng-model="resetCredentials.email" 
+                ng-change="" 
+                ng-blur="" 
+                ng-focus="dialog.serverError = null" 
+                autocapitalize="off" 
+                required />
+            </md-input-container>
+            <div ng-messages="formForgotPassword.email.$error" ng-show="formForgotPassword.$submitted">
+              <div ng-message="required">This field is required</div>
+              <div ng-message="email">Use correct address</div>
+            </div>
+
+            <!-- Server errors -->
+            <p class="row" ng-show="dialog.serverError">
+              <span ng-bind="dialog.serverError.text"></span> - 
+              <span ng-bind="dialog.serverError.reason"></span>
+            </p>
+            <p class="row">
+              <md-button class="md-primary">Reset Password</md-button>
+              <md-button class="md-primary" ng-click="dialog.signinStep=''">Back</md-button>
+            </p>
+          </form>
+          
+        </div>
+      </md-tab>
+
+      <md-tab label="Register">
+        <div layout="row" layout-align="center center" ng-switch on="dialog.signupStep">
+          
+          <form name="formSignup" 
+            ng-switch-default
+            ng-submit="dialog.signup(signupData, formSignup.$valid)" 
+            class="md-padding" 
+            novalidate>
+            <md-input-container class="md-default-theme">
+              <label for="">Name</label>
+              <input 
+                type="text"
+                name="name"
+                ng-model="signupData.name" 
+                ng-change="" 
+                ng-blur="" 
+                autocapitalize="off" 
+                required />
+            </md-input-container>
+            <div ng-messages="formSignup.name.$error" ng-show="formSignup.$submitted">
+              <div ng-message="required">This field is required</div>
+              <div ng-message="email">Use correct address</div>
+            </div>
+            <md-input-container class="md-default-theme">
+              <label for="">Email</label>
+              <input 
+                type="email"
+                name="email"
+                ng-model="signupData.email" 
+                ng-change="" 
+                ng-blur="" 
+                autocapitalize="off" 
+                required />
+            </md-input-container>
+            <div ng-messages="formSignup.email.$error" ng-show="formSignup.$submitted">
+              <div ng-message="required">This field is required</div>
+              <div ng-message="email">Use correct address</div>
+            </div>
+
+            <md-input-container class="md-default-theme">
+              <label for="">Password</label>
+              <input 
+                type="password"
+                name="password"
+                minlength="3"
+                ng-model="signupData.password" 
+                ng-change="" 
+                ng-blur="" 
+                autocapitalize="off" 
+                required />
+            </md-input-container>
+            <div ng-messages="formSignup.password.$error" ng-show="formSignup.$submitted">
+              <div ng-message="required">This field is required</div>
+              <div ng-message="minlength">Input too short</div>
+            </div>
+
+            <md-input-container class="md-default-theme">
+              <label for="">Retype Password</label>
+              <input 
+                type="password"
+                name="repassword"
+                minlength="3"
+                ng-model="signupData.repassword" 
+                ng-change="" 
+                ng-blur="" 
+                jm-input-match="signupData.password"
+                autocapitalize="off" 
+                required />
+            </md-input-container>
+            <div ng-messages="formSignup.repassword.$error" ng-show="formSignup.$submitted">
+              <div ng-message="required">This field is required</div>
+              <div ng-message="unique">Passwords didn't match</div>
+              <div ng-message="minlength">Input too short</div>
+            </div>
+            
+            <p class="row">
+              <md-button class="md-primary">Register</md-button>
+              <md-button class="md-primary" ng-click="dialog.signupStep='resend'">Resend Confirmation Email</md-button>
+            </p>
+          </form>
+
+          <form name="formResend" 
+            ng-switch-when="resend"
+            ng-submit="dialog.resend(resendData, formResend.$valid)" 
+            class="md-padding" 
+            novalidate>
+            
+            <md-input-container class="md-default-theme">
+              <label for="">Email</label>
+              <input 
+                type="email"
+                name="email"
+                ng-model="resendData.email" 
+                ng-change="" 
+                ng-blur="" 
+                autocapitalize="off" 
+                required />
+            </md-input-container>
+            <div ng-messages="formResend.email.$error" ng-show="formResend.$submitted">
+              <div ng-message="required">This field is required</div>
+              <div ng-message="email">Use correct address</div>
+            </div>
+            
+            <p class="row">
+              <md-button class="md-primary">Send Email</md-button>
+              <md-button class="md-primary" ng-click="dialog.signupStep=''">Back</md-button>
+            </p>
+          </form>
+          
+        </div>
+      </md-tab>
+
+    </md-tabs>
+
+  </md-content>
+</md-dialog>
+
+
