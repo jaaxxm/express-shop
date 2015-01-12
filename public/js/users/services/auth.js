@@ -21,7 +21,6 @@
     }
 
     var login = function(credentials) {
-      console.log(credentials);
       
       var req = {
         method: 'POST',
@@ -32,23 +31,18 @@
       return $q(function(resolve, reject) {
         $http(req).then(
           function(response) {
-            console.log(response);
             setUp(response);
             resolve($user);
           },
           function(response) {
             tearDown();
-            reject({
-              text: response.statusText, 
-              reason: response.data.reason
-            });
+            reject(response.data);
           }
         );
       });
     };
 
     var reset = function(user) {
-      console.log(user);
       
       var req = {
         method: 'POST',
@@ -59,15 +53,30 @@
       return $q(function(resolve, reject) {
         $http(req).then(
           function(response) {
-            console.log(response);
             resolve();
           },
           function(response) {
-            console.log(response);
-            reject({
-              text: response.statusText, 
-              reason: response.data.reason
-            });
+            reject(response.data);
+          }
+        );
+      });
+    };
+
+    var newPassword = function(data, token) {
+      
+      var req = {
+        method: 'POST',
+        url: '/rest/forgot-password/' + token,
+        data: data
+      };
+
+      return $q(function(resolve, reject) {
+        $http(req).then(
+          function(response) {
+            resolve();
+          },
+          function(response) {
+            reject(response.data);
           }
         );
       });
@@ -86,10 +95,7 @@
             resolve(response);
           },
           function(response) {
-            reject({
-              text: response.statusText, 
-              reason: response.data.reason
-            });
+            reject(response.data);
           }
         );
       });
@@ -100,15 +106,10 @@
       return $q(function(resolve, reject) {
         $http.post('/rest/signup', user).then(
           function(response) {
-            // setup User
-            resolve(response);
+            resolve();
           },
           function(response) {
-            // tear down User
-            reject({
-              text: response.statusText, 
-              reason: response.data.reason
-            });
+            reject(response.data);
           }
         );
       });
@@ -150,6 +151,7 @@
     return {
       login: login,
       reset: reset,
+      newPassword: newPassword,
       logout: logout,
       signup: signup,
       resend: resend

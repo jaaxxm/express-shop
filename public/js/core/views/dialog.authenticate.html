@@ -46,10 +46,8 @@
               <div ng-message="minlength">Input too short</div>
             </div>
             <!-- Server errors -->
-            <p class="row" ng-show="dialog.serverError">
-              <span ng-bind="dialog.serverError.text"></span> - 
-              <span ng-bind="dialog.serverError.reason"></span>
-            </p>
+            <p class="row" ng-show="dialog.serverError" ng-bind="dialog.serverError"></p>
+
             <p class="row">
               <md-button class="md-primary">Login</md-button>
               <md-button class="md-primary" ng-click="dialog.signinStep='forgot'">Forgot Password?</md-button>
@@ -88,6 +86,10 @@
               <md-button class="md-primary" ng-click="dialog.signinStep=''">Back</md-button>
             </p>
           </form>
+
+          <div class="md-padding" ng-switch-when="reset-sent">
+            <p>Email containing reset link has been sent</p>
+          </div>
           
         </div>
       </md-tab>

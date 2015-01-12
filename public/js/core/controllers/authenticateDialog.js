@@ -17,11 +17,7 @@
             console.log(response);
             $mdDialog.hide();
             $state.go('user.info');
-          },
-          function (error) {
-            dialog.serverError = error;
-          }
-        );
+          }, handleError);
       }
     }
 
@@ -30,14 +26,8 @@
         var promise = AuthFactory.reset(user);
         promise.then(
           function (response) {
-            console.log(response);
-            $mdDialog.hide();
-            $state.go('user.reset');
-          },
-          function (error) {
-            dialog.serverError = error;
-          }
-        );
+            dialog.signinStep = 'reset-sent';
+          }, handleError);
       }
     }
 
@@ -47,11 +37,7 @@
         promise.then(
           function (response) {
             console.log(response);
-          },
-          function (error) {
-            dialog.serverError = error;
-          }
-        );
+          }, handleError);
       }
     }
 
@@ -61,13 +47,14 @@
         promise.then(
           function (response) {
             console.log(response);
-          },
-          function (error) {
-            dialog.serverError = error;
-          }
-        );
+          }, handleError);
       }
     }
+
+    function handleError (response) {
+      dialog.serverError = response.error;
+    }
+
   }
 
   angular.module('core').controller('AutheticateDialogCtrl', AutheticateDialogCtrl);

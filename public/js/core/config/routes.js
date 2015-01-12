@@ -27,12 +27,21 @@
             }
           }
         })
-        .state('core.signtoken', {
+        .state('core.signuptoken', {
           url: '/signup/:token',
           views: {
             "content": {
               templateUrl: '/js/core/views/signup.token.html',
               controller: 'SignupTokenCtrl as vm'
+            }
+          }
+        })
+        .state('core.resettoken', {
+          url: '/forgot-password/:token',
+          views: {
+            "content": {
+              templateUrl: '/js/core/views/forgot.password.html',
+              controller: 'ForgotPasswordCtrl as vm'
             }
           }
         });
